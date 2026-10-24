@@ -1,0 +1,60 @@
+# =====================================================================
+# Attendance Agent Configuration
+# =====================================================================
+
+# Ollama Vision Model Configuration
+vision:
+  model_name: "moondream"   # Local Ollama model. Pull with: ollama pull moondream
+  timeout_seconds: 120      # Timeout for vision inference
+
+# Browser & Automation Settings
+browser:
+  headless: false           # Default headed mode (can be overridden with --headless)
+  timeout_ms: 30000         # Default timeout for selector waiting in milliseconds
+  # No session persistence — a fresh login is performed on every run.
+  viewport:
+    width: 1280
+    height: 800
+
+# CSS Selectors & Page Navigation
+# NOTE: Update these selectors to match your institution's TCS iON portal DOM structure.
+selectors:
+  # Login Page Form Elements (Pure CSS)
+  login:
+    username_field: "input#userId, input[name='userId'], input[name='userName'], input[type='text']"
+    password_field: "input#password, input[name='password'], input[type='password']"
+    submit_button: "button#loginSubmit, button[type='submit'], input[type='submit'], #submitBtn, a#loginBtn"
+
+  # Session Validation Selectors (Pure CSS)
+  session:
+    logged_in_indicator: "a[href*='logout'], .user-profile, .user-name, #dashboard, .dashboard"
+    login_required_indicator: "input[type='password'], #loginSubmit, input#userId"
+
+  # Cookie Consent Banner Selectors (Pure CSS)
+  cookies:
+    accept_button: "#onetrust-accept-btn-handler, .cookie-accept-btn, #acceptCookie, .acceptcookies"
+
+  # Verification / CAPTCHA / 2FA Handling (Pure CSS)
+  verification:
+    captcha_or_otp_indicator: ".captcha-container, #captcha, input[name='otp'], input#otp, .otp-dialog"
+
+  # Navigation to "Period-wise attendance" (Pure CSS)
+  navigation:
+    direct_attendance_link: "a[title*='Attendance' i], a[title*='Period' i], [id*='periodWise' i]"
+    menu_steps:
+      - name: "Academic / Attendance Menu"
+        selector: "a[title*='Attendance' i], li[title*='Attendance' i], .attendance-menu"
+      - name: "Period Wise Attendance Submenu"
+        selector: "a[title*='Period' i], li[title*='Period' i], .period-attendance-sub"
+
+    # Selector confirming the attendance table or page is loaded (Pure CSS)
+    attendance_page_indicator: "table, .attendance-table, .period-attendance"
+
+# Screenshot and Storage Paths
+paths:
+  shots_dir: "shots"
+  logs_dir: "logs"
+  out_dir: "out"
+
+screenshot:
+  max_width: 1280           # Resized image max width before sending to moondream (px)

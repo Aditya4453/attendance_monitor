@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "attendance-agent"
+version = "0.1.0"
+description = "Automated TCS portal attendance monitoring CLI with Playwright and Ollama vision"
+readme = "README.md"
+authors = [
+    { name = "Aditya" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "playwright>=1.40.0",
+    "ollama>=0.3.0",
+    "pillow>=10.0.0",
+    "typer>=0.9.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "loguru>=0.7.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0.0",
+    "elevenlabs>=1.0.0",
+]
+
+[project.scripts]
+attendance = "agent.cli:main"
+agent-shell = "agent.shell:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agent*"]

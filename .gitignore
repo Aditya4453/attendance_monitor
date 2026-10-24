@@ -1,0 +1,21 @@
+# Credentials & sensitive auth
+.env
+auth_state.json
+
+# Screenshots & run logs
+shots/
+logs/
+out/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.env.local
+# Local secrets written by `elevenlabs onboard`
+/.env
